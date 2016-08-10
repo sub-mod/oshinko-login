@@ -5,6 +5,7 @@ angular
     .module('app')
     //angular.module('openshiftConsole')
     .provider('RedirectLoginService', function() {
+        console.log("RedirectLoginService   ")
         var _oauth_client_id = "";
         var _oauth_authorize_uri = "";
         var _oauth_redirect_uri = "";

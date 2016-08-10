@@ -14,7 +14,7 @@ angular
     .module('app')
     //angular.module('openshiftConsole')
     .provider('$ws', function($httpProvider) {
-
+        console.log("$ws")
         // $get method is called to build the $ws service
         this.$get = function($q, $injector, Logger) {
             var authLogger = Logger.get("auth");

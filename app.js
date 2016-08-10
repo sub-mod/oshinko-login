@@ -31,7 +31,7 @@
 
                 .otherwise({ redirectTo: '/login' });
         })
-        .config(function($httpProvider, AuthServiceProvider, RedirectLoginServiceProvider, AUTH_CFG, API_CFG, kubernetesContainerSocketProvider) {
+        .config(function($httpProvider, AuthServiceProvider, RedirectLoginServiceProvider, AUTH_CFG, API_CFG) {
             $httpProvider.interceptors.push('AuthInterceptor');
 
             AuthServiceProvider.LoginService('RedirectLoginService');
@@ -41,11 +41,12 @@
 
             RedirectLoginServiceProvider.OAuthClientID(AUTH_CFG.oauth_client_id);
             RedirectLoginServiceProvider.OAuthAuthorizeURI(AUTH_CFG.oauth_authorize_uri);
+            console.log(AUTH_CFG.oauth_redirect_base);
             RedirectLoginServiceProvider.OAuthRedirectURI(URI(AUTH_CFG.oauth_redirect_base).segment("oauth").toString());
-            console.log(AUTH_CFG.oauth_client_id);
+
 
             // Configure the container terminal
-            kubernetesContainerSocketProvider.WebSocketFactory = "ContainerWebSocket";
+            //kubernetesContainerSocketProvider.WebSocketFactory = "ContainerWebSocket";
         })
         .run(function run($rootScope, $location, $cookieStore, $http) {
             // keep user logged in after page refresh

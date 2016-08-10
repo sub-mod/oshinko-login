@@ -33,6 +33,7 @@ angular.module('app')
 //   onUserChanged(callback)
 //     the given callback is called whenever the current user changes
     .provider('AuthService', function() {
+        console.log("AuthService")
         var _userStore = "";
         this.UserStore = function(userStoreName) {
             if (userStoreName) {
