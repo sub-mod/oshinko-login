@@ -6,23 +6,23 @@
 // assets/app/config.local.js and edit the copy.
 window.OPENSHIFT_CONFIG = {
     apis: {
-        hostPort: "localhost:8443",
+        hostPort: "192.168.1.2:8443",
         prefix: "/apis"
     },
     api: {
         openshift: {
-            hostPort: "localhost:8443",
+            hostPort: "192.168.1.2:8443",
             prefix: "/oapi"
         },
         k8s: {
-            hostPort: "localhost:8443",
+            hostPort: "192.168.1.2:8443",
             prefix: "/api"
         }
     },
     auth: {
-        oauth_authorize_uri: "https://localhost:8443/oauth/authorize",
-        oauth_redirect_base: "https://localhost:9000",
-        oauth_client_id: "openshift-web-console",
+        oauth_authorize_uri: "https://192.168.1.2:8443/oauth/authorize",
+        oauth_redirect_base: "http://localhost:8000",
+        oauth_client_id: "oshinko-oauth-client",
         logout_uri: ""
     },
     loggingURL: "",

@@ -9,7 +9,15 @@
         .constant("API_CFG", _.get(window.OPENSHIFT_CONFIG, "api", {}))
         .constant("APIS_CFG", _.get(window.OPENSHIFT_CONFIG, "apis", {}))
         .constant("AUTH_CFG", _.get(window.OPENSHIFT_CONFIG, "auth", {}))
-        .config(function config($routeProvider, $locationProvider) {
+        .config(['$locationProvider', function($locationProvider) {
+
+            $locationProvider.html5Mode(true);
+
+        }])
+        .config(['$routeProvider', '$locationProvider',function ($routeProvider, $locationProvider) {
+            $locationProvider.html5Mode({
+                enabled: true,
+            });
             $routeProvider
                 .when('/', {
                     controller: 'HomeController',
@@ -19,18 +27,29 @@
 
                 .when('/login', {
                     controller: 'LoginController',
-                    templateUrl: 'login/login.view.html',
+                    templateUrl: function(params) {
+                        return 'login/login.view.html';
+                    },
                     controllerAs: 'vm'
                 })
-
+                .when('/oauth', {
+                    templateUrl: function(params) {
+                        return 'controllers/oauth.html';
+                    },
+                    controller: 'OAuthController'
+                })
                 .when('/register', {
                     controller: 'RegisterController',
-                    templateUrl: 'register/register.view.html',
+                    templateUrl: function(params) {
+                        return 'register/register.view.html';
+                    },
                     controllerAs: 'vm'
                 })
 
-                .otherwise({ redirectTo: '/login' });
-        })
+                .otherwise({ redirectTo: '/' });
+
+
+        }])
         .config(function($httpProvider, AuthServiceProvider, RedirectLoginServiceProvider, AUTH_CFG, API_CFG) {
             $httpProvider.interceptors.push('AuthInterceptor');
 

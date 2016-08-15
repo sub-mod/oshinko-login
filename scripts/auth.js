@@ -225,11 +225,12 @@ angular.module('app')
             // If auth is not needed, or is already present, returns a config
             // If auth is needed and not present, starts a login flow and returns a promise of a config
             request: function(config) {
+                console.log("request")
                 // Requests that don't require auth can continue
-                if (!AuthService.requestRequiresAuth(config)) {
+                //if (!AuthService.requestRequiresAuth(config)) {
                     // console.log("No auth required", config.url);
-                    return config;
-                }
+                    //return config;
+                //}
 
                 // If we could add auth info, we can continue
                 if (AuthService.addAuthToRequest(config)) {
@@ -254,6 +255,7 @@ angular.module('app')
             },
 
             responseError: function(rejection) {
+                console.log("responseError")
                 var authConfig = rejection.config.auth || {};
 
                 // Requests that didn't require auth can continue

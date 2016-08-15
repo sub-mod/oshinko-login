@@ -12,7 +12,7 @@ angular
     //angular.module('openshiftConsole')
     .controller('OAuthController', function ($scope, $location, $q, RedirectLoginService, DataService, AuthService, Logger) {
         var authLogger = Logger.get("auth");
-
+        
         // Initialize to a no-op function.
         // Needed to let the view confirm a login when the state is unverified.
         $scope.completeLogin = function(){};

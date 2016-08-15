@@ -33,7 +33,7 @@ angular.module('app')
             };
 
             // Set default log level
-            var logLevel = "ERROR";
+            var logLevel = "DEBUG";
             if (localStorage) {
                 logLevel = localStorage['OpenShiftLogLevel.main'] || logLevel;
             }
